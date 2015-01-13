@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>W-Store</title>
+    </head>
+{% load staticfiles %}
+<link rel="stylesheet" type = "text/css" href="{% static 'store/listProduct.css' %}" />
+<link rel="stylesheet" type = "text/css" href="{% static 'store/menu.css' %}" />
+<link rel="stylesheet" type = "text/css" href="{% static 'store/header.css' %}" />
+<body>
+        
+    <div id="header">
+        <img id="logo" src="Imagenes/Google-Music-Beta-Android-logo.png" alt="Logo" title="Logo">
+        <h1>W-store</h1>
+        <!--<div id = "paginas">-->
+        <div id="botones">
+            <a href="" id="login">Iniciar Sesion</a>
+            <a href="" id="register">Registrarse</a>
+            <p>Invitado</p>
+            <!--<div class="clear"></div>-->
+        </div>
+        <div class="clear"></div>
+
+        <div id="menu2">
+            <ul>
+                <li><a href="">Inicio</a></li>
+                <li><a href="">Productos</a></li>
+                <li><a href="">Como comprar</a></li>
+                <li><a href="">Contactanos</a></li>
+                <li><a href="">Foro</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <div id="content">
+{% if latest_product_list %}
+    {% for producto in latest_product_list %}
+        <div class="product">
+            <div>
+                aqui va la imagen
+            </div>
+            <div class="clear"></div>
+            <div>
+            <a href="{% url 'store:detailProduct' producto.id %}"><span class="prodructName">{{ producto.nombre }}</span></a><br>
+            Price: {{ producto.price }}<br>
+            Special Price: {{ producto.special_price }}<br>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!-- <li><a href="/store/product/{{ producto.id }}/">{{ producto.nombre }}</a></li> -->
+        <!-- <li><a href="{% url 'store:detailProduct' producto.id %}">{{ producto.nombre }}</a></li>-->
+    {% endfor %}
+            <div class="clear"></div>
+{% else %}
+    <p>No hay productos disponibles.</p>
+{% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% extends "store/base.html" %}
+
+{% block header %}
+    <img id="logo" src="{{MEDIA_URL}}SinImagen.png" alt="Logo" title="Logo">
+    <h1>W-store</h1>
+    <!--<div id = "paginas">-->
+    <div id="botones">
+        <a href="" id="login">Iniciar Sesion</a>
+        <a href="" id="register">Registrarse</a>
+        <p>Invitado</p>
+        <!--<div class="clear"></div>-->
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+{% block menu %}
+    <div id="menu2">
+        <ul>
+            <li><a href="">Inicio</a></li>
+            <li><a href="">Productos</a></li>
+            <li><a href="">Como comprar</a></li>
+            <li><a href="">Contactanos</a></li>
+            <li><a href="">Foro</a></li>
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+    {% if latest_product_list %}
+        {% for producto in latest_product_list %}
+            <div class="product">
+                <div>
+                    aqui va la imagen
+                </div>
+                <div class="clear"></div>
+                <div>
+                <a href="{% url 'store:detailProduct' producto.id %}"><span class="prodructName">{{ producto.nombre }}</span></a><br>
+                Price: {{ producto.price }}<br>
+                Special Price: {{ producto.special_price }}<br>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <!-- <li><a href="/store/product/{{ producto.id }}/">{{ producto.nombre }}</a></li> -->
+            <!-- <li><a href="{% url 'store:detailProduct' producto.id %}">{{ producto.nombre }}</a></li>-->
+        {% endfor %}
+                <div class="clear"></div>
+    {% else %}
+        <p>No hay productos disponibles.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,11 @@
+<h1>Sigin UP</h1>
+
+<form action="{% url 'store:destSignUp' %}" method="post">
+{% csrf_token %}
+Usuario: <br><input type="text" name="username" id="username" maxlength="30" size="30"><br>
+Nombre: <br><input type="text" name="firstname" id="firstname" maxlength="30" size="30"><br>
+Apellido: <br><input type="text" name="lastname" id="lastname" maxlength="30" size="30"><br>
+Email: <br><input type="text" name="email" id="email" maxlength="75" size="30"><br>
+Contraseña: <br><input type="password" name="password" id="password" maxlength="30" size="30"><br>
+<input type="submit" value="Sigin">
+</form>

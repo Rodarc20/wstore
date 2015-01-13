@@ -1,0 +1,15 @@
+{% load staticfiles %}
+<link rel="stylesheet" type = "text/css" href="{% static 'store/listProduct.css' %}" />
+<link rel="stylesheet" type = "text/css" href="{% static 'store/menu.css' %}" />
+<link rel="stylesheet" type = "text/css" href="{% static 'store/header.css' %}" />
+<!-- meorar la parte de los include de css -->
+
+<body>
+    <div id="header">
+    {% block header %}{% endblock %}
+    {% block menu %}{% endblock %}
+    </div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>

@@ -1,0 +1,17 @@
+<h1>Agregar Producto</h1>
+
+<!-- <form action=" url 'store:destAddProduct'" method="post"> -->
+<form action="{% url 'store:destAddProduct' %}" method="post">
+{% csrf_token %}
+Nombre: <input type="text" name="nombre" id="nombre" value="nombre" maxlength="200" size="200"><br>
+Marca: <input type="text" name="marca" id="marca" value="marca" maxlength="30" size="30"><br><!-- la marca deberia ser un dropbox o algo asi ademas la marca deberia tener su propia clase en la base de deatos -->
+Tipo: <input type="text" name="tipo" id="tipo" value="tipo" maxlength="30" size="30"><br><!-- el tipo deberia ser un dropbox o algo asi ademas el tipo deberia tener su propia clase en la base de deatos -->
+Descripcion: <br><textarea name="descripcion" id="descripcion" cols="100" rows="10"></textarea><br>
+Especificaciones: <br><textarea name="especificaciones" id="especificaciones" cols="100" rows="15"></textarea><br>
+<!-- Descripcion: <input type="text" name="description" id="description" value="descripcion" maxlength="500" size="500"> -->
+Precio: <input type="text" name="precio" id="precio" value="precio" maxlength="10" size="10"><br>
+Precio especial: <input type="text" name="precioEspecial" id="precioEspecial" value="precio especial" maxlength="10" size="10"><br>
+Stock: <input type="text" name="stock" id="stock" value="stock" maxlength="30" size="30"><br>
+Valoracion: <input type="text" name="valoracion" id="valoracion" value="0" maxlength="2" size="2"><br>
+<input type="submit" value="Agregar">
+</form>

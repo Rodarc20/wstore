@@ -1,0 +1,10 @@
+<h1>Orden numero: {{ order.id }}</h1>
+<p>Usuario: {{order.user }}</p>
+{% for p in order.products.all %}
+    <li>{{ p.nombre }} - {{ p.special_price }}</li>
+{% endfor %}
+
+<p>Precio Total: {{order.total_price}}</p>
+<p>Fecha generado: {{order.date}}</p>
+<p>Estado: {{order.status}}</p>
+<p>Voucher: {{order.voucher}}</p>

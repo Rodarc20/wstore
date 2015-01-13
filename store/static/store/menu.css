@@ -1,0 +1,62 @@
+@font-face
+{
+font-family: eur;
+src: url('fonts/Eurostile.ttf');
+}
+
+@font-face
+{
+font-family: Bank;
+src: url('fonts/bgothm.ttf');
+}
+
+@font-face
+{
+font-family: ErasM;
+src: url('fonts/ERASMD.ttf');
+}
+
+#menu{
+    overflow: hidden;
+    border: 1px solid;
+    width:100%;
+}
+#menu div{
+    float:left;
+}
+#menu2{
+    overflow: hidden;
+    width:100%;
+}
+#menu2 ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+#menu2 li{
+    width:20%;
+    float:left;
+}
+#menu2 a:link, a:visited{
+    display: block;
+    width: 100%;
+    padding: 4px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration:none;
+    text-transform:uppercase;
+    color: rgb(255, 255, 255);
+    background-color: rgb(13, 107, 170);
+    -webkit-transition: all 0.3s ease; /* Efecto de transición para cuandocolocamos en mouse encima del botón para un determinado navegador */
+    -moz-transition: all 0.3s ease; /* Efecto de transición para cuandocolocamos en mouse encima del botón para un determinado navegador */
+    -o-transition: all 0.3s ease; /* Efecto de transición para cuandocolocamos en mouse encima del botón para un determinado navegador */
+    transition: all 0.3s ease; /* Efecto de transición para cuandocolocamos en mouse encima del botón para un determinado navegador */
+}
+#menu2 a:hover, a:active{
+    background-color: rgb(55, 167, 242);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}

@@ -1,0 +1,9 @@
+<h1>Login</h1>
+<form action="{% url 'store:destLogin' %}" method="post" name="login">
+{% csrf_token %}
+    Usuario:<br>
+    <input type="text" maxlength="30" size="30" name="username"><br>
+    Password:<br>
+    <input type="password" maxlength="128" size="30" name="password"><br>
+    <input type="submit" name="login" value="Login">
+</form>
