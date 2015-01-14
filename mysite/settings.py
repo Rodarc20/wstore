@@ -87,5 +87,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
+MEDIA_ROOT = '/home/rodrigo/djangoProjects/mysite/media/'
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]

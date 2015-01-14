@@ -8,7 +8,7 @@ class Product(models.Model):
     spec = models.CharField(max_length=1000)#las especificaciones tambien deberian ser mas grandes
     price = models.DecimalField(max_digits=7, decimal_places=2)
     special_price = models.DecimalField(max_digits=7, decimal_places = 2)
-    #image = # este lo deamos para despues ya que aun no se como trabajare las imagenes o las subire
+    image = models.ImageField(upload_to='products')# este lo deamos para despues ya que aun no se como trabajare las imagenes o las subire
     rank = models.IntegerField(default=0)
     stock = models.CharField (max_length=30)
     product_type = models.CharField(max_length=30)

@@ -28,9 +28,9 @@ def listProducts(request):
 
 def listProducts2(request):
     if(request.user.is_authenticated()):
-        latest_product_list = Product.objects.order_by('-price')[:5]
+        latest_product_list = Product.objects.order_by('pk')[:2]#esta ordenado por clave primari 
     else:
-        latest_product_list = Product.objects.order_by('-price')[:2]
+        latest_product_list = Product.objects.order_by('-price')[:1]#esta ordenado por precio
     context = {'latest_product_list': latest_product_list}
     return render(request, 'store/listProducts2.html', context)
 def detailProduct(request, product_id):

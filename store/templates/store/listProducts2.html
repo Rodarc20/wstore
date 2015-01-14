@@ -1,7 +1,7 @@
 {% extends "store/base.html" %}
 
 {% block header %}
-    <img id="logo" src="{{MEDIA_URL}}SinImagen.png" alt="Logo" title="Logo">
+    <img id="logo" src="" alt="Logo" title="Logo">
     <h1>W-store</h1>
     <!--<div id = "paginas">-->
     <div id="botones">
@@ -28,7 +28,7 @@
         {% for producto in latest_product_list %}
             <div class="product">
                 <div>
-                    aqui va la imagen
+                    <img src="{{ producto.image.url }}" alt="{{ producto.nombre }}">
                 </div>
                 <div class="clear"></div>
                 <div>
