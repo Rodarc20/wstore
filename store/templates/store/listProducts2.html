@@ -1,5 +1,12 @@
 {% extends "store/base.html" %}
 
+{% load staticfiles %}
+{% block styles %}
+<link rel="stylesheet" type = "text/css" href="{% static 'store/listProduct.css' %}" />
+<link rel="stylesheet" type = "text/css" href="{% static 'store/menu.css' %}" />
+<link rel="stylesheet" type = "text/css" href="{% static 'store/header.css' %}" />
+{% endblock %}
+
 {% block header %}
     <img id="logo" src="" alt="Logo" title="Logo">
     <h1>W-store</h1>

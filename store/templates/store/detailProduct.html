@@ -1,9 +1,51 @@
-<h1>{{ product.nombre }}</h1>
-<img id="prod" src="{{ product.image.url }}" alt="{{ product.nombre}}">
-<p>By: {{ product.marca }}</p>
-<p>Tipo: {{ product.product_type}}</p>
-<p>Descripcion: {{ product.description }}</p>
-<p>Especificaciones: {{ product.spec }}</p>
-<p>Precio: {{ product.price }}</p>
-<p>Precio Especial: {{ product.special_price }}</p>
-<p>Stock: {{ product.stock}}</p>
+{% extends "store/base.html" %}
+
+{% load staticfiles %}
+{% block styles %}
+<link rel="stylesheet" type = "text/css" href="{% static 'store/listProduct.css' %}" />
+<link rel="stylesheet" type = "text/css" href="{% static 'store/menu.css' %}" />
+<link rel="stylesheet" type = "text/css" href="{% static 'store/header.css' %}" />
+{% endblock %}
+
+{% block header %}
+    <img id="logo" src="" alt="Logo" title="Logo">
+    <h1>W-store</h1>
+    <!--<div id = "paginas">-->
+    <div id="botones">
+        <a href="{% url 'login' %}" id="login">Iniciar Sesion</a>
+        <a href="{% url 'store:signUp' %}" id="register">Registrarse</a>
+        <p>Invitado</p>
+        <!--<div class="clear"></div>-->
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+
+{% block menu %}
+    <div id="menu2">
+        <ul>
+            <li><a href="{% url 'store:listProducts' %}">Inicio</a></li>
+            <li><a href="">Productos</a></li>
+            <li><a href="">Como comprar</a></li>
+            <li><a href="">Contactanos</a></li>
+            <li><a href="">Foro</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ product.nombre }}</h1>
+    <div id="imagen">
+        <img id="prod" src="{{ product.image.url }}" alt="{{ product.nombre}}">
+    </div>
+    <div id="info">
+        <p>By: {{ product.marca }}</p>
+        <p>Tipo: {{ product.product_type}}</p>
+        <p>Precio: {{ product.price }}</p>
+        <p>Precio Especial: {{ product.special_price }}</p>
+        <p>Stock: {{ product.stock}}</p>
+    </div>
+    <div id="description">
+        <p>Descripcion: {{ product.description }}</p>
+        <p>Especificaciones: {{ product.spec }}</p>
+    </div>
+{% endblock %}

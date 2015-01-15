@@ -28,11 +28,11 @@ def listProducts(request):
 
 def listProducts2(request):
     if(request.user.is_authenticated()):
-        latest_product_list = Product.objects.order_by('pk')[:2]#esta ordenado por clave primari 
+        latest_product_list = Product.objects.order_by('pk')[:5]#esta ordenado por clave primari 
     else:
-        latest_product_list = Product.objects.order_by('-price')[:1]#esta ordenado por precio
+        latest_product_list = Product.objects.order_by('-price')[:5]#esta ordenado por precio
     context = {'latest_product_list': latest_product_list}
-    return render(request, 'store/listProducts2.html', context)
+    return render(request, 'store/listProducts.html', context)
 def detailProduct(request, product_id):
     try:
         product = Product.objects.get(pk=product_id)
