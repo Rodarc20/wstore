@@ -18,27 +18,19 @@ src: url('fonts/ERASMD.ttf');
 
 #menu{
     overflow: hidden;
-    border: 1px solid;
     width:100%;
 }
-#menu div{
-    float:left;
-}
-#menu2{
-    overflow: hidden;
-    width:100%;
-}
-#menu2 ul{
+#menu ul{
     list-style-type: none;
     margin:0;
     padding:0;
     overflow: hidden;
 }
-#menu2 li{
+#menu li{
     width:20%;
     float:left;
 }
-#menu2 a:link, a:visited{
+#menu a:link, a:visited{
     display: block;
     width: 100%;
     padding: 4px;
@@ -53,7 +45,7 @@ src: url('fonts/ERASMD.ttf');
     -o-transition: all 0.3s ease; /* Efecto de transición para cuandocolocamos en mouse encima del botón para un determinado navegador */
     transition: all 0.3s ease; /* Efecto de transición para cuandocolocamos en mouse encima del botón para un determinado navegador */
 }
-#menu2 a:hover, a:active{
+#menu a:hover, a:active{
     background-color: rgb(55, 167, 242);
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;

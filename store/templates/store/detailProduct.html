@@ -2,7 +2,8 @@
 
 {% load staticfiles %}
 {% block styles %}
-<link rel="stylesheet" type = "text/css" href="{% static 'store/listProduct.css' %}" />
+<link rel="stylesheet" type = "text/css" href="{% static 'store/base.css' %}" />
+<link rel="stylesheet" type = "text/css" href="{% static 'store/detailProduct.css' %}" />
 <link rel="stylesheet" type = "text/css" href="{% static 'store/menu.css' %}" />
 <link rel="stylesheet" type = "text/css" href="{% static 'store/header.css' %}" />
 {% endblock %}
@@ -21,7 +22,7 @@
 {% endblock %}
 
 {% block menu %}
-    <div id="menu2">
+    <div id="menu">
         <ul>
             <li><a href="{% url 'store:listProducts' %}">Inicio</a></li>
             <li><a href="">Productos</a></li>
@@ -38,14 +39,15 @@
         <img id="prod" src="{{ product.image.url }}" alt="{{ product.nombre}}">
     </div>
     <div id="info">
-        <p>By: {{ product.marca }}</p>
-        <p>Tipo: {{ product.product_type}}</p>
-        <p>Precio: {{ product.price }}</p>
-        <p>Precio Especial: {{ product.special_price }}</p>
-        <p>Stock: {{ product.stock}}</p>
+        <p><span class="boldmark">By:</span> {{ product.marca }}</p>
+        <p><span class="boldmark">Tipo:</span> {{ product.product_type}}</p>
+        <p><span class="boldmark">Precio:</span> {{ product.price }}</p>
+        <p><span class="boldmark">Precio Especial:</span> {{ product.special_price }}</p>
+        <p><span class="boldmark">Stock:</span> {{ product.stock}}</p>
     </div>
+    <div class="clear"></div>
     <div id="description">
-        <p>Descripcion: {{ product.description }}</p>
-        <p>Especificaciones: {{ product.spec }}</p>
+        <p><span class="boldmark">Descripcion:</span> {{ product.description }}</p>
+        <p><span class="boldmark">Especificaciones:</span> {{ product.spec }}</p>
     </div>
 {% endblock %}

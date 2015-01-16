@@ -2,6 +2,7 @@
 
 {% load staticfiles %}
 {% block styles %}
+<link rel="stylesheet" type = "text/css" href="{% static 'store/base.css' %}" />
 <link rel="stylesheet" type = "text/css" href="{% static 'store/listProduct.css' %}" />
 <link rel="stylesheet" type = "text/css" href="{% static 'store/menu.css' %}" />
 <link rel="stylesheet" type = "text/css" href="{% static 'store/header.css' %}" />
@@ -20,7 +21,7 @@
     <div class="clear"></div>
 {% endblock %}
 {% block menu %}
-    <div id="menu2">
+    <div id="menu">
         <ul>
             <li><a href="{% url 'store:listProducts' %}">Inicio</a></li>
             <li><a href="">Productos</a></li>

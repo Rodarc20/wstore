@@ -1,0 +1,75 @@
+.product a:link {
+    color: rgb(13, 107, 170);
+    text-decoration: none;
+} 
+.product a:visited{
+    color: rgb(13, 107, 170);
+    text-decoration: none;
+} 
+.product a:hover {
+    color: black;
+    text-decoration: none;
+} 
+.product a:active{
+    color: black;
+    text-decoration: none;
+} 
+
+#imagen{
+    float: left;
+}
+
+#prod{/*imagen dentro del div imagen*/
+    margin: 5px 5px 5px 5px;
+    width: 370px;
+}
+#info{/* esto solo funciona en artistD.py deberia tener su prpopio css conrregir cuando tenga mas tiempo
+    /*margin: 2px 2px;*/
+    float:left;
+}
+
+#description p{
+    /*border-top-style : solid;*/
+    border-top-style : dotted;
+    /*border-top-color : #e0e0e0;*/
+    border-top-color : rgb(13, 107, 170);
+    border-top-width: 1px;
+    padding: 15px 15px 15px 15px;
+}
+.productName{
+    font-weight: bold;
+    font-size: 18px;
+}
+.boldmark{
+    font-weight: bold;
+}
+/*#menu{
+    overflow: hidden;
+    border: 1px solid;
+    width:100%;
+}
+#menu div{
+    float:left;
+}
+#menu2{
+    overflow: hidden;
+    width:100%;
+}
+#menu2 ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+#menu2 li{
+    float:left;
+}
+div.clear{
+    clear:both;
+}
+h1 {
+    color: rgba(31, 107, 183, 1);
+    text-shadow: 2px 2px 2px #6e6e6e;
+}
+
+
