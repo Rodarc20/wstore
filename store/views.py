@@ -2,10 +2,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext, loader
-from store.models import Product, PurchaseOrder
+from store.models import Product, PurchaseOrder, coment
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 def listProducts(request):
     #esta vista mostrara los ultims productos agregados a la tienda
@@ -23,7 +24,7 @@ def listProducts(request):
     #output = ', '.join([p.nombre for p in latest_product_list])
     #return HttpResponse(output)
     #other way
-    context = {'latest_product_list': latest_product_list}
+    context = {'latest_product_list': latest_product_list, 'user': request.user.username,}
     return render(request, 'store/listProducts.html', context)
 
 def listProducts2(request):
@@ -33,12 +34,14 @@ def listProducts2(request):
         latest_product_list = Product.objects.order_by('-price')[:5]#esta ordenado por precio
     context = {'latest_product_list': latest_product_list}
     return render(request, 'store/listProducts.html', context)
+
 def detailProduct(request, product_id):
     try:
         product = Product.objects.get(pk=product_id)
     except Product.DoesNotExist:
         raise Http404
-    return render(request, 'store/detailProduct.html', {'product': product})
+    comentarios = coment.objects.filter(product=product_id)#se mostraran por ahora 10 comentarios por pagina, ver como se maipularan las paginas en el template
+    return render(request, 'store/detailProduct.html', {'product': product, 'comentarios': comentarios, 'request': request})
     #return HttpResponse("Estas viendo el producto %s." % product_id)
 
 def detailPurchaseOrder(request, purchaseorder_id):
@@ -98,3 +101,12 @@ def destSignUp(request):
     u.set_password(request.POST['password'])
     u.save()
     return HttpResponseRedirect(reverse('store:perfil', args=(u.id,)))
+
+#def destComent(request):
+    #c = coment(user = request.user, date=timezone.now(), coment=request.POST['comentario'], rank=request['valoracion'], product=
+def destComent(request):
+    p = Product.objects.get(pk=request.POST['prod'])
+    c = coment(user=request.user, coment=request.POST['comentario'], rank=request.POST['valor'], date=timezone.now(), product=p)
+    c.save()
+    return HttpResponseRedirect(reverse('store:detailProduct', args=(p.id,)))
+

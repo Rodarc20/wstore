@@ -1,11 +1,73 @@
-<h1>Sigin UP</h1>
+{% extends "store/base.html" %}
 
-<form action="{% url 'store:destSignUp' %}" method="post">
-{% csrf_token %}
-Usuario: <br><input type="text" name="username" id="username" maxlength="30" size="30"><br>
-Nombre: <br><input type="text" name="firstname" id="firstname" maxlength="30" size="30"><br>
-Apellido: <br><input type="text" name="lastname" id="lastname" maxlength="30" size="30"><br>
-Email: <br><input type="text" name="email" id="email" maxlength="75" size="30"><br>
-Contraseña: <br><input type="password" name="password" id="password" maxlength="30" size="30"><br>
-<input type="submit" value="Sigin">
-</form>
+{% load staticfiles %}
+{% block styles %}
+    <link rel="stylesheet" type = "text/css" href="{% static 'store/base.css' %}" />
+    <link rel="stylesheet" type = "text/css" href="{% static 'store/signUp.css' %}" />
+    <link rel="stylesheet" type = "text/css" href="{% static 'store/menu.css' %}" />
+    <link rel="stylesheet" type = "text/css" href="{% static 'store/header.css' %}" />
+{% endblock %}
+
+{% block header %}
+    <a href="{% url 'store:listProducts' %}"><img id="logo" src="{{ MEDIA_URL }}W-store.png" alt="W-store" title="W-store"></a>
+    <h1>W-store</h1>
+    <!--<div id = "paginas">-->
+    <div id="botones">
+        <a href="{% url 'login' %}" id="login">Iniciar Sesion</a>
+        <a href="{% url 'store:signUp' %}" id="register">Registrarse</a>
+        <p>Invitado</p>
+        <!--<div class="clear"></div>-->
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+{% block menu %}
+    <div id="menu">
+        <ul>
+            <li><a href="{% url 'store:listProducts' %}">Inicio</a></li>
+            <li><a href="{% url 'store:listProducts' %}">Productos</a></li>
+            <li><a href="">Como comprar</a></li>
+            <li><a href="">Contactanos</a></li>
+            <li><a href="">Foro</a></li>
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+    <script>
+    function checkEmail(){
+        var email = document.getElementById("email").value;
+        var patt = /^[0-9a-zA-Z]+[0-9a-zA-Z\.\-_]+[@][0-9a-zA-Z]+\.[0-9a-zA-Z]+$/g;
+        var result = email.match(patt);
+        if(result){
+            document.getElementById("email").style.borderColor= "green";
+        }
+        else{
+            document.getElementById("email").style.borderColor= "red";
+        
+        }
+    }
+    function checkMatchPass(){
+        var pass1 = document.getElementById("password").value;
+        var pass2 = document.getElementById("passwordc").value;
+        if( pass1==pass2 ){
+            document.getElementById("password").style.borderColor= "green";
+            document.getElementById("passwordc").style.borderColor= "green";
+        }
+        else{
+            document.getElementById("password").style.borderColor= "red";
+            document.getElementById("passwordc").style.borderColor= "red";
+        }
+    }
+    </script>
+    <h1>Sign UP</h1>
+
+    <form action="{% url 'store:destSignUp' %}" method="post">
+    {% csrf_token %}
+    Usuario: <br><input type="text" name="username" id="username" maxlength="30" size="30"><br>
+    Contraseña: <br><input type="password" name="password" id="password" maxlength="30" size="30"><br>
+    Confirmar contraseña: <br><input type="password" name="passwordc" id="passwordc" maxlength="30" size="30" onchange=checkMatchPass()><br>
+    Nombre: <br><input type="text" name="firstname" id="firstname" maxlength="30" size="30"><br>
+    Apellido: <br><input type="text" name="lastname" id="lastname" maxlength="30" size="30"><br>
+    Email: <br><input type="text" name="email" id="email" maxlength="75" size="30" onchange=checkEmail()><br>
+    <input type="submit" value="Sigin">
+    </form>
+{% endblock %}

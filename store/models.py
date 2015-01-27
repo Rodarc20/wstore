@@ -33,5 +33,14 @@ class PurchaseOrder(models.Model):
     def __unicode__(self):
         return u"%s" % self.id
 
+class coment(models.Model):
+    user = models.ForeignKey(User)
+    product = models.ForeignKey(Product)
+    coment = models.CharField(max_length=1000)
+    rank = models.IntegerField(default = 0)
+    date = models.DateTimeField("date when comented")
+    def __unicode__(self):
+        return u"%s" % self.id
+
 
 # Create your models here.

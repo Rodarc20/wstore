@@ -9,13 +9,19 @@
 {% endblock %}
 
 {% block header %}
-    <img id="logo" src="" alt="Logo" title="Logo">
+    <a href="{% url 'store:listProducts' %}"><img id="logo" src="{{ MEDIA_URL }}W-store.png" alt="W-store" title="W-store"></a>
     <h1>W-store</h1>
     <!--<div id = "paginas">-->
     <div id="botones">
-        <a href="{% url 'login' %}" id="login">Iniciar Sesion</a>
-        <a href="{% url 'store:signUp' %}" id="register">Registrarse</a>
-        <p>Invitado</p>
+    <!--si deebria comprobar que haya la variable usuario y q este authenticado-->
+        {% if user.is_active %}
+            <a href="{% url 'store:logout' %}" id="register">Cerrar sesion</a>
+            <p>{{ user }}</p>
+        {% else %}
+            <a href="{% url 'login' %}" id="login">Iniciar Sesion</a>
+            <a href="{% url 'store:signUp' %}" id="register">Registrarse</a>
+            <p>Invitado</p>
+        {% endif %}
         <!--<div class="clear"></div>-->
     </div>
     <div class="clear"></div>
@@ -50,4 +56,31 @@
         <p><span class="boldmark">Descripcion:</span> {{ product.description }}</p>
         <p><span class="boldmark">Especificaciones:</span> {{ product.spec }}</p>
     </div>
+    <div id="coments">
+        <p><span class="boldmark">Comentarios</span></p>
+        {% for comentario in comentarios %}
+        <div class="coment">
+            <span class="comentUser">{{ comentario.user }}</span>  <span class="comentDate">{{ comentario.date }}</span><br>
+            <p>{{ comentario.coment }}</p>
+            Rank: <span class="valoracion">{{ comentario.rank }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% if user.is_active %}
+        <p><span class="boldmark">Comentar:</span></p>
+        <form action="{% url 'store:destComent' %}" method="POST">
+            {% csrf_token %}
+            Valoracion:
+            <select name="valor" id="valor">
+            {% for i in "01234567890" %}
+                <option value="{{ forloop.counter0 }}">{{ forloop.counter0 }}</option>
+            {% endfor %}
+            </select><br>
+            <textarea name="comentario" id="comentario" rows="10" cols="100"></textarea><br>
+            <input type="hidden" name="prod" value="{{ product.id }}">
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <input type="submit" value="Comentar">
+        </form>
+    {% endif %}
+
 {% endblock %}

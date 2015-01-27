@@ -30,8 +30,8 @@
 
 #description p{
     /*border-top-style : solid;*/
-    border-top-style : dotted;
     /*border-top-color : #e0e0e0;*/
+    border-top-style : dotted;
     border-top-color : rgb(13, 107, 170);
     border-top-width: 1px;
     padding: 15px 15px 15px 15px;
@@ -42,6 +42,94 @@
 }
 .boldmark{
     font-weight: bold;
+    font-size: 19px;
+}
+#coments p{
+    border-top-style : dotted;
+    border-top-color : rgb(13, 107, 170);
+    border-top-width: 1px;
+    padding: 15px 15px 15px 15px;
+}
+.coment {
+    padding: 10px;
+    word-wrap: break-word;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background: rgb(255, 255, 255); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(215,215,215,1) 0%,rgba(215,215,215,1) 100%); /* FF3.6+ */
+    background: -webkit-linear-gradient(top, rgba(215,215,215,1) 0%,rgba(215,215,215,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(215,215,215,1) 0%,rgba(215,215,215,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(215,215,215,1) 0%,rgba(215,215,215,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(215,215,215,1) 0%,rgba(215,215,215,1) 100%); /* W3C */
+
+}
+.coment p{
+    border-top-style : dotted;
+    border-bottom-style : dotted;
+    border-top-color : rgb(13, 107, 170);
+    border-bottom-color : rgb(13, 107, 170);
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    padding: 15px 15px 15px 15px;
+}
+.comentUser{
+    font-weight: bold;
+    font-size: 19px;
+    color: rgb(0, 77, 140);
+}
+.comentDate{
+    float: right;
+}
+textarea{
+    border-color: rgb(28,91,178);
+    border-style: solid;
+    border-radius: 5px; 
+    border-width: 2px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+input[type=submit]{
+    display: block;
+    font-family: eur;
+    font-size: 15px;
+    border-color: rgb(28,91,178);
+    border-style: solid;
+    border-radius: 5px; 
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: rgb(28,91,178);
+    color: white;
+    -webkit-transition: all 0.3s ease; /* Efecto de transición para cuandocolocamos en mouse encima del botón para un determinado navegador */
+}
+input[type=submit]:hover{
+    display: block;
+    border-color: rgb(45, 157, 222);
+    border-style: solid;
+    border-radius: 5px; 
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: rgb(45, 157, 222);
+    color: white;
+    -webkit-transition: all 0.3s ease; /* Efecto de transición para cuandocolocamos en mouse encima del botón para un determinado navegador */
+}
+select{
+    font-family: eur;
+    padding: 5px;
+    background-color: rgb(28,91,178);
+    color: white;
+    border-color: rgb(28,91,178);
+    border-style: solid;
+    border-radius: 5px; 
+
 }
 /*#menu{
     overflow: hidden;

@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^signup/$', views.signUp, name='signUp'),
     url(r'^destSignUp/$', views.destSignUp, name='destSignUp'),
     url(r'^user/(?P<user_id>\d+)/$', views.perfil, name='perfil'),#/store/product/2/
+    url(r'^coment/$', views.destComent, name='destComent'),
 )

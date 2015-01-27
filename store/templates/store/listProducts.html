@@ -9,13 +9,18 @@
 {% endblock %}
 
 {% block header %}
-    <img id="logo" src="" alt="Logo" title="Logo">
+    <a href="{% url 'store:listProducts' %}"><img id="logo" src="{{ MEDIA_URL }}W-store.png" alt="W-store" title="W-store"></a>
     <h1>W-store</h1>
     <!--<div id = "paginas">-->
     <div id="botones">
-        <a href="" id="login">Iniciar Sesion</a>
-        <a href="" id="register">Registrarse</a>
-        <p>Invitado</p>
+        {% if user.is_active %}
+            <a href="{% url 'store:logout' %}" id="register">Cerrar sesion</a>
+            <p>{{ user }}</p>
+        {% else %}
+            <a href="{% url 'login' %}" id="login">Iniciar Sesion</a>
+            <a href="{% url 'store:signUp' %}" id="register">Registrarse</a>
+            <p>Invitado</p>
+        {% endif %}
         <!--<div class="clear"></div>-->
     </div>
     <div class="clear"></div>
@@ -24,7 +29,7 @@
     <div id="menu">
         <ul>
             <li><a href="{% url 'store:listProducts' %}">Inicio</a></li>
-            <li><a href="">Productos</a></li>
+            <li><a href="{% url 'store:listProducts' %}">Productos</a></li>
             <li><a href="">Como comprar</a></li>
             <li><a href="">Contactanos</a></li>
             <li><a href="">Foro</a></li>
@@ -40,7 +45,7 @@
                 </div>
                 <div class="clear"></div>
                 <div>
-                <a href="{% url 'store:detailProduct' producto.id %}"><span class="prodructName">{{ producto.nombre }}</span></a><br>
+                <a href="{% url 'store:detailProduct' producto.id %}"><span class="productName">{{ producto.nombre }}</span></a><br>
                 Price: {{ producto.price }}<br>
                 Special Price: {{ producto.special_price }}<br>
                 </div>
