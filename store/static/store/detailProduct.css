@@ -131,33 +131,3 @@ select{
     border-radius: 5px; 
 
 }
-/*#menu{
-    overflow: hidden;
-    border: 1px solid;
-    width:100%;
-}
-#menu div{
-    float:left;
-}
-#menu2{
-    overflow: hidden;
-    width:100%;
-}
-#menu2 ul{
-    list-style-type: none;
-    margin:0;
-    padding:0;
-    overflow: hidden;
-}
-#menu2 li{
-    float:left;
-}
-div.clear{
-    clear:both;
-}
-h1 {
-    color: rgba(31, 107, 183, 1);
-    text-shadow: 2px 2px 2px #6e6e6e;
-}
-
-

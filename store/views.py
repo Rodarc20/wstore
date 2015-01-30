@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext, loader
-from store.models import Product, PurchaseOrder, coment
+from store.models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -44,6 +44,12 @@ def detailProduct(request, product_id):
     return render(request, 'store/detailProduct.html', {'product': product, 'comentarios': comentarios, 'request': request})
     #return HttpResponse("Estas viendo el producto %s." % product_id)
 
+@login_required# no se usa parametros para usar el que vene por defecto en django
+def carrito(request):
+    carro = Carrito.objects.get(user=request.user, status="open")
+    #conditions = Condition.objects.filter(carrito=carro)
+    return render(request, 'store/carrito.html', {'carro': carro})
+    
 def detailPurchaseOrder(request, purchaseorder_id):
     order = get_object_or_404(PurchaseOrder, pk=purchaseorder_id)
     return render(request, 'store/detailPurchaseOrder.html', {'order': order})
@@ -66,11 +72,6 @@ def destAddProduct(request):
     return HttpResponseRedirect(reverse('store:detailProduct', args=(p.id,)))
 
 #@login_required(login_url='/accounts/login/$')
-@login_required# no se usa parametros para usar el que vene por defecto en django
-def carrito(request):
-    latest_product_list = Product.objects.order_by('nombre')[:5]
-    context = {'latest_product_list': latest_product_list}
-    return render(request, 'store/listProducts.html', context)
 
 def destLogin(request):
     username = request.POST['username']

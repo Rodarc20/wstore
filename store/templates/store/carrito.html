@@ -1,0 +1,56 @@
+{% extends "store/base.html" %}
+
+{% load staticfiles %}
+{% block styles %}
+<link rel="stylesheet" type = "text/css" href="{% static 'store/base.css' %}" />
+<link rel="stylesheet" type = "text/css" href="{% static 'store/menu.css' %}" />
+<link rel="stylesheet" type = "text/css" href="{% static 'store/header.css' %}" />
+<link rel="stylesheet" type = "text/css" href="{% static 'store/carrito.css' %}" />
+{% endblock %}
+
+{% block header %}
+    <a href="{% url 'store:listProducts' %}"><img id="logo" src="{{ MEDIA_URL }}W-store.png" alt="W-store" title="W-store"></a>
+    <h1>W-store</h1>
+    <!--<div id = "paginas">-->
+    <div id="botones">
+    <!--si deebria comprobar que haya la variable usuario y q este authenticado-->
+        {% if user.is_active %}
+            <a href="{% url 'store:logout' %}" id="register">Cerrar sesion</a>
+            <p>{{ user }}</p>
+        {% else %}
+            <a href="{% url 'login' %}" id="login">Iniciar Sesion</a>
+            <a href="{% url 'store:signUp' %}" id="register">Registrarse</a>
+            <p>Invitado</p>
+        {% endif %}
+        <!--<div class="clear"></div>-->
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+
+{% block menu %}
+    <div id="menu">
+        <ul>
+            <li><a href="{% url 'store:listProducts' %}">Inicio</a></li>
+            <li><a href="">Productos</a></li>
+            <li><a href="">Como comprar</a></li>
+            <li><a href="">Contactanos</a></li>
+            <li><a href="">Foro</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ carro.user }}</h1>
+    <div id="info">
+    <!-- hacer esto como un tabla, por ahora dejarlo solo como divs -->
+        <div class="productItemC">
+            <span class="productName">Producto</span> -  <span class="cantidad">Cantidad</span> - <span class="precio">Precio por unidad</span> - <span class="precioTotal">Precio Total</span>
+        </div>
+        {% for condition in carro.condition_set.all %}
+        <div class="productItem">
+            <a href="{% url 'store:detailProduct' condition.producto.id %}">{{ condition.producto }}</a> -  <span class="productCantidad">{{ condition.cantidad }}</span> - <span class="productPrice">{{ condition.price }}</span> - <span class="productTotalPrice">{{ condition.calculateTotal }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="clear"></div>
+{% endblock %}

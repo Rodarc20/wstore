@@ -33,6 +33,62 @@ class PurchaseOrder(models.Model):
     def __unicode__(self):
         return u"%s" % self.id
 
+class Carrito(models.Model):#los precios del carrito open se deben actulizar constanmente, si esta closed no actualizar ya esta en orde por tanto solo falta el pago, deberia haber un tiempor maximo de espera
+    products = models.ManyToManyField(Product, through='Condition', through_fields=('carrito', 'producto'))
+    total_price = models.DecimalField(max_digits=9, decimal_places=2, default = 0)
+    date = models.DateTimeField("date when generate")#no deberia haber fecha ya que no importa cuando es creado puede haber un carrito muy antiguo con un item, el precio no debe anternese por que si la promcion no esta activa ya no vale corregir
+    user = models.ForeignKey(User)
+    #status = models.CharField(max_length=10, default="open")#open or closed aunque deberia ser solo true o false
+    status = models.CharField(max_length=6, default="open")#open or closed aunque deberia ser solo true o false
+    def actualizarCarrito(self):
+        conditions = Condition.objects.filter(carrito=self)
+        for con in conditions:
+            con.actualizarPrice()
+        self.calculateTotal()
+    def calculateTotal(self):#se debe hacer la llamda a esta funcion constamente los precios deben actualizarse,pero debe acutualozrse el precio con el especil price del producto
+        productos = self.products.all()
+        acum = 0
+        for p in productos:
+            condit = Condition.objects.get(carrito=self, producto=p)
+            acum += condit.price*condit.cantidad
+        self.total_price = acum
+        return self.total_price
+    def __unicode__(self):
+        return u"%s" % self.id
+
+class Order(models.Model):
+    carrito = models.ForeignKey(Carrito)
+    total_price = models.DecimalField(max_digits=9, decimal_places=2, default = 0)
+    status = models.CharField(max_length=100)
+    date = models.DateTimeField("date when generate")
+    voucher = models.IntegerField(default = 0)
+    user = models.ForeignKey(User)
+    direccion = models.CharField(max_length=300)
+    def totalPrice(self):
+        total_price = carrito.total_price
+        return self.total_price
+    def closeCarrito(self):
+        carrito.status = "closed"
+        #asignar un nuevo carrito al usuario, no se si sea buena idea hacer esto aqui, pero es facil de hacer en otro lado, por ahora se hara asi
+        
+        
+    def __unicode__(self):
+        return u"%s" % self.id
+
+class Condition(models.Model):
+    producto = models.ForeignKey(Product)
+    carrito = models.ForeignKey(Carrito)
+    cantidad = models.IntegerField(default = 1)
+    price = models.DecimalField(max_digits = 9, decimal_places = 2)
+    def calculateTotal(self):
+        return self.price * self.cantidad
+    def actualizarPrice(self):
+        if(producto.special_price != 0):
+            price = producto.special_price
+        else:
+            price = producto.price
+        return price
+
 class coment(models.Model):
     user = models.ForeignKey(User)
     product = models.ForeignKey(Product)
